@@ -1135,14 +1135,32 @@
     </div>
   </div>
 
-  <!-- Go To -->
+  <!-- Go To 
 
   <a href="#header" class="goto-top scroll-link">
     <svg>
       <use xlink:href="./static/images/sprite.svg#icon-arrow-up"></use>
     </svg>
   </a>
+-->
 
+<!--chatbot-->
+<div id="chatbot-container" aria-live="polite">
+    <button id="chatbot-toggle" aria-label="Open chatbot" title="Open chatbot">
+      <img src="./static/images/bot.png" alt="Chat" width="40" height="40">
+    </button>
+    <div id="chatbot-window" class="chatbot-hide" role="dialog" aria-modal="true" aria-label="Chatbot">
+      <div id="chatbot-header">
+        <span>Chatbot</span>
+        <button id="chatbot-close" aria-label="Close chatbot" title="Close chatbot">&times;</button>
+      </div>
+      <div id="chatbot-messages" tabindex="0" aria-live="polite"></div>
+      <form id="chatbot-form" autocomplete="off">
+        <input type="text" id="chatbot-input" placeholder="Type a message..." autocomplete="off" aria-label="Type your message" />
+        <button type="submit" aria-label="Send message">Send</button>
+      </form>
+    </div>
+</div>
 
   <!-- Glide Carousel Script -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>

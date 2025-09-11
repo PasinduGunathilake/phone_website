@@ -120,3 +120,78 @@ document.querySelector('#search-btn').onclick=()=>{
     login.classList.remove('active');
  
 }
+
+// Chatbot logic
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleBtn = document.getElementById('chatbot-toggle');
+  const closeBtn = document.getElementById('chatbot-close');
+  const windowEl = document.getElementById('chatbot-window');
+  const form = document.getElementById('chatbot-form');
+  const input = document.getElementById('chatbot-input');
+  const messages = document.getElementById('chatbot-messages');
+
+  function appendMessage(text, sender) {
+    const msg = document.createElement('div');
+    msg.className = 'chatbot-message ' + sender;
+    msg.textContent = text;
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function appendLoading() {
+    const loading = document.createElement('div');
+    loading.className = 'chatbot-message bot';
+    loading.id = 'chatbot-loading';
+    loading.innerHTML = '<span style="opacity:0.7;">...</span>';
+    messages.appendChild(loading);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function removeLoading() {
+    const loading = document.getElementById('chatbot-loading');
+    if (loading) loading.remove();
+  }
+
+  if (toggleBtn && closeBtn && windowEl && form && input && messages) {
+    toggleBtn.addEventListener('click', function() {
+      windowEl.classList.toggle('chatbot-hide');
+      if (!windowEl.classList.contains('chatbot-hide')) {
+        setTimeout(() => input.focus(), 200);
+      }
+    });
+
+    closeBtn.addEventListener('click', function() {
+      windowEl.classList.add('chatbot-hide');
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      appendMessage(text, 'user');
+      input.value = '';
+      appendLoading();
+      setTimeout(() => {
+        removeLoading();
+        // Simple bot reply logic
+        let reply = "Sorry, I'm just a demo bot!";
+        if (/hello|hi|hey/i.test(text)) reply = "Hello! How can I help you today?";
+        else if (/price|cost/i.test(text)) reply = "For pricing information, please check our products section.";
+        else if (/contact|support/i.test(text)) reply = "You can contact us via the Contact section below.";
+        else if (/bye|goodbye/i.test(text)) reply = "Goodbye! Have a great day!";
+        appendMessage(reply, 'bot');
+      }, 700);
+    });
+
+    // Optional: greet on open
+    let greeted = false;
+    toggleBtn.addEventListener('click', function() {
+      if (!greeted && windowEl.classList.contains('chatbot-hide') === false) {
+        setTimeout(() => {
+          appendMessage("Hi! I'm your assistant. Ask me anything about our shop.", 'bot');
+        }, 400);
+        greeted = true;
+      }
+    });
+  }
+});
