@@ -452,7 +452,9 @@ Hero Area
 }
 
 .hero__right img.banner_03 {
-  width: 70%;
+  width: 100%; 
+  height: 50rem; 
+  object-fit: contain;;
 }
 
 /*
@@ -541,6 +543,10 @@ Collection
 .img__container {
   width: 25rem;
   text-align: center;
+  height: 25rem; /* Add a fixed height to the container. */
+  display: flex; /* Use flexbox to center the image. */
+  align-items: center;
+  justify-content: center;
 }
 
 .collection__box img.collection_01 {
@@ -549,6 +555,11 @@ Collection
 
 .collection__box img.collection_02 {
   width: 75%;
+}
+.collection__box img {
+  width: 100%; /* Make all images fill their container. */
+  height: 100%;
+  object-fit: contain; /* This will make the image fit inside its box without being cropped. */
 }
 
 .collection__content {
@@ -833,13 +844,15 @@ span.dot::before {
 
 .product__header {
   height: 25rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem ;
   text-align: center;
+  overflow: hidden; 
 }
 
 .product__header img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* This is the key to fixing the distortion. */
 }
 
 .product__footer {
@@ -967,7 +980,7 @@ Latest Products Media Query
   }
 
   .product__header img {
-    width: 50%;
+    width: 100%;
   }
 
   .product__footer h3 {
@@ -1565,18 +1578,65 @@ News Section
   padding-bottom: 8rem;
 }
 
+/* make slides row flex so all children stretch */
+.news .glide__slides {
+  display: flex;
+  align-items: stretch;
+}
+
+/* each slide must also be flex so its card can stretch */
+.news .glide__slide {
+  display: flex;
+  align-items: stretch;
+}
+
 .new__card {
   background-color: var(--primaryColor);
   width: 95%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;        /* fill the parent slide */
+  min-height: 38rem;   /* ensures same visual height */
+  box-sizing: border-box;
+}
+
+.new__card .card__header img {
+  width: 100%;
+  height: 25rem;
+  object-fit: cover;
+  display: block;
+}
+
+.card__footer {
+  padding: 1rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  justify-content: space-between; /* keeps button at bottom */
+  box-sizing: border-box;
 }
 
 .new__card:not(:last-child) {
   margin-right: 1rem;
 }
 
-.card__footer {
-  padding: 3rem 1.4rem;
+.new__card .card__header img {
+  width: 100%;
+  height: 25rem;
+  object-fit: cover;
+  display: block;
+}
+
+
+.new__card:not(:last-child) {
+  margin-right: 1rem;
+}
+.new__card .card__header img {
+  width: 100%;
+  height: 25rem;
+  object-fit: cover;
+  display: block;
 }
 
 .card__footer h3 {
@@ -1597,6 +1657,8 @@ News Section
   color: var(--black2);
   margin-bottom: 1.6rem;
   line-height: 2.7rem;
+   flex: 1;
+
 }
 
 .card__footer a button,
@@ -2611,4 +2673,59 @@ Cart Area Media Query
     .searchF .search-form{
       top: 14%;
     }
+}
+/* Checkout Form */
+.checkout-form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.checkout-form-container.active {
+    display: flex; /* Show when active */
+}
+
+.checkout-form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 400px;
+    position: relative;
+}
+
+.checkout-form h3 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+#card-element {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#card-errors {
+    color: red;
+    margin-bottom: 1rem;
+}
+
+.checkout-form .btn {
+    width: 100%;
+    text-align: center;
+}
+.checkout-form .close__toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
 }

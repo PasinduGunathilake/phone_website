@@ -171,6 +171,20 @@
                 <span class="price">$800.99/-</span>
                 <span class="quantity">qty : 1</span>
             </div>
+    <div class="checkout-form-container">
+    <div class="checkout-form">
+        <h3>Payment Details</h3>
+        <div id="card-element">
+            </div>
+        <div id="card-errors" role="alert"></div>
+        <button id="pay-now-btn" class="btn">Pay Now</button>
+        <span id="close-checkout-btn" class="close__toggle">
+            <svg>
+                <use xlink:href="./images/sprite.svg#icon-cross"></use>
+            </svg>
+        </span>
+    </div>
+</div>        
         </div>
         <div class="box">
             <i class="fas fa-trash"></i>
@@ -191,7 +205,7 @@
             </div>
         </div>
         <div class="total">Total : $1354.69/-</div>
-        <a href="#" class="btn">Check out</a>
+        <button id="checkout-btn" class="btn">Check out</button>
     </div>
 
   </header>
@@ -756,23 +770,23 @@
               </div>
             </div>
             <div class="section__titles">
-              <div class="section__title filter-btn" data-id="Trending Products">
+              <div class="section__title filter-btn" data-id="Laptops">
                 <span class="dot"></span>
-                <h1 class="primary__title">Trending Products</h1>
+                <h1 class="primary__title">Laptops</h1>
               </div>
             </div>
 
             <div class="section__titles">
-              <div class="section__title filter-btn" data-id="Special Products">
+              <div class="section__title filter-btn" data-id="Headphone">
                 <span class="dot"></span>
-                <h1 class="primary__title">Special Products</h1>
+                <h1 class="primary__title">Headphone</h1>
               </div>
             </div>
 
             <div class="section__titles">
-              <div class="section__title filter-btn" data-id="Featured Products">
+              <div class="section__title filter-btn" data-id="Mobile phone">
                 <span class="dot"></span>
-                <h1 class="primary__title">Featured Products</h1>
+                <h1 class="primary__title">Mobile phone</h1>
               </div>
             </div>
 
@@ -839,13 +853,10 @@
                   <div class="client__image">
                     <img src="./images/profile1.jpg" alt="profile">
                   </div>
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore
-                    quibusdam consequatur eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing
-                    elit. Recusandae fuga hic nesciunt tempore
-                    quibusdam consequatur eligendi unde officia ex quae.</p>
+                  <p>iPhone 17 vs iPhone 17 Pro<br> The base iPhone suddenly makes a lot more sense.A 120Hz screen, new cameras, more storage, same price: the iPhone 17 sounds almost too good to be true.</p>
                   <div class="client__info">
-                    <h3>John Smith</h3>
-                    <span>Founder at Apple</span>
+                    <h3>Aleksandar Anastasov</h3>
+                    <span>Senior Reviews Writer</span>
                   </div>
                 </div>
               </li>
@@ -854,16 +865,14 @@
                   <div class="client__image">
                     <img src="./images/profile2.jpg" alt="profile">
                   </div>
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore
-                    quibusdam consequatur
-                    eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic
-                    nesciunt tempore
-                    quibusdam consequatur eligendi unde officia ex quae.adipisicing elit. Recusandae fuga hic
-                    nesciunt tempore
-                    quibusdam consequatur eligendi unde officia ex quae.</p>
+                  <p>Windows 11 25H2 update might disappoint if you were hoping for better performance, new report suggests<br>
+                    Windows 11 25H2 has been put through its performance paces
+Based on a suite of 40 benchmarks, it won't be any faster than 24H2
+
+                  </p>
                   <div class="client__info">
-                    <h3>John Smith</h3>
-                    <span>Founder at Apple</span>
+                    <h3>Darren Allan</h3>
+                    <span> freelancer</span>
                   </div>
                 </div>
               </li>
@@ -872,16 +881,12 @@
                   <div class="client__image">
                     <img src="./images/profile3.jpg" alt="profile">
                   </div>
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore
-                    quibusdam consequatur
-                    eligendi unde officia ex quae.ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic
-                    nesciunt tempore
-                    quibusdam consequatur eligendi unde officia ex quae.adipisicing elit. Recusandae fuga hic
-                    nesciunt tempore
-                    quibusdam consequatur eligendi unde officia ex quae.</p>
+                  <p>Tim Cook Wants Apple to Literally Save Your Life<br>
+                    Much as the CEO seems awestruck by AI and his just-released Apple Intelligence, he’s more convinced that the tech giant’s health apps will define the company’s legacy.
+                  </p>
                   <div class="client__info">
-                    <h3>John Smith</h3>
-                    <span>Founder at Apple</span>
+                    <h3>Steven Levy</h3>
+                    <span>gamut of tech</span>
                   </div>
                 </div>
 
@@ -891,17 +896,11 @@
                   <div class="client__image">
                     <img src="./images/profile4.jpg" alt="">
                   </div>
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae fuga hic nesciunt tempore
-                    quibusdam consequatur
-                    eligendi unde officia ex quae.adipisicing elit. Recusandae fuga hic
-                    nesciunt tempore
-                    quibusdam consequatur eligendi unde officia ex quae.
-                    hic
-                    nesciunt tempore
-                    quibusdam consequatur eligendi unde officia ex quae.</p>
+                  <p>A Heartfelt Thank You to our Data Protection Customers<br>
+Gartner Peer Insights Voice of the Customer for Enterprise Backup and Recovery Software Solutions.</p>
                   <div class="client__info">
-                    <h3>John Smith</h3>
-                    <span>Founder at Apple</span>
+                    <h3>Stephen Young</h3>
+                    <span>CEO of NFTfi</span>
                   </div>
                 </div>
               </li>
@@ -939,11 +938,10 @@
                       <img src="./images/news1.jpg" alt="">
                     </div>
                     <div class="card__footer">
-                      <h3>Styling White Shirts After A Cool Day</h3>
-                      <span>By Admin</span>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non
-                        provident rem sed minus natus unde vel modi!</p>
-                      <a href="#"><button>Read More</button></a>
+                      <h3>5 Reasons to Use Bluetooth Headset with Your Laptop or PC</h3>
+                      <span>By liveyTECH</span>
+                      <p>Innovative technology like Bluetooth delivers wireless connectivity with flexibility and breakneck speed. </p>
+                      <a href="https://www.liveytech.com/5-reasons-to-use-bluetooth-headset-with-your-laptop-or-pc/"><button>Read More</button></a>
                     </div>
                   </div>
                 </li>
@@ -953,11 +951,10 @@
                       <img src="./images/news2.jpg" alt="">
                     </div>
                     <div class="card__footer">
-                      <h3>Styling White Shirts After A Cool Day</h3>
-                      <span>By Admin</span>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non
-                        provident rem sed minus natus unde vel modi!</p>
-                      <a href="#"><button>Read More</button></a>
+                      <h3>Choosing the ideal headphone</h3>
+                      <span>By Bowers & Wilkins</span>
+                      <p>An excellent pair of headphones makes a great companion, but which are best for you? In this guide, we walk you through some simple steps to choosing the perfect headphones for any occasion.</p>
+                      <a href="https://www.bowerswilkins.com/en/"><button>Read More</button></a>
                     </div>
                   </div>
                 </li>
@@ -967,25 +964,23 @@
                       <img src="./images/news3.jpg" alt="">
                     </div>
                     <div class="card__footer">
-                      <h3>Styling White Shirts After A Cool Day</h3>
-                      <span>By Admin</span>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non
-                        provident rem sed minus natus unde vel modi!</p>
-                      <a href="#"><button>Read More</button></a>
+                      <h3>A Laptop Blog-Laptop Trends & Reviews For The Laptop Rental World</h3>
+                      <span>By rbeagle </span>
+                      <p>Microsoft introduced a new 2-in-1 device to its PC line on Monday, but the Surface 7+ will only be sold to commercial and educational customers. </p>
+                      <a href="https://blog.rentourlaptops.com/"><button>Read More</button></a>
                     </div>
                   </div>
                 </li>
                 <li class="glide__slide">
                   <div class="new__card">
                     <div class="card__header">
-                      <img src="./images/news4.jpg" alt="">
+                      <img src="./images/news4.png" alt="">
                     </div>
                     <div class="card__footer">
-                      <h3>Styling White Shirts After A Cool Day</h3>
+                      <h3>Mobile Phone Blog</h3>
                       <span>By Admin</span>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non
-                        provident rem sed minus natus unde vel modi!</p>
-                      <a href="#"><button>Read More</button></a>
+                      <p>A Mobile Phone in this day and age are far more than just tools for communication on the move, not just for receiving and making phone calls and text messages.The Phoneismobile Blog is Your mini mobile phone timeline about issues relevant to you and your mobile </p>
+                      <a href="phoneismobile.com"><button>Read More</button></a>
                     </div>
                   </div>
                 </li>
@@ -995,11 +990,10 @@
                       <img src="./images/news5.jpg" alt="">
                     </div>
                     <div class="card__footer">
-                      <h3>Styling White Shirts After A Cool Day</h3>
-                      <span>By Admin</span>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo praesentium, numquam non
-                        provident rem sed minus natus unde vel modi!</p>
-                      <a href="#"><button>Read More</button></a>
+                      <h3>My 10 best laptop picks for 2025: Tested, reviewed, and ready to buy</h3>
+                      <span>By Sean Riley</span>
+                      <p>Laptop Mag started in 1991 as the Laptop Buyers Guide and Handbook to review and recommend the best laptops. Thirty-four years later, helping readers find the best laptop remains our top priority.</p>
+                      <a href="https://www.laptopmag.com/reviews/best-laptops-1"><button>Read More</button></a>
                     </div>
                   </div>
                 </li>
@@ -1154,6 +1148,126 @@
   <script src="./js/index.js"></script>
   <script src="./js/slider.js"></script>
 
-</body>
+  <script src="https://js.stripe.com/v3/"></script>
 
+  <script src="./js/products.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/slider.js"></script>
+  <script>
+    // Stripe.js initialization
+    const stripe = Stripe('pk_test_TYeiyXW4e8BvT9WqL6rG9l1d');
+    const elements = stripe.elements();
+    const card = elements.create('card');
+    card.mount('#card-element');
+
+    // Get the HTML elements
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const payNowBtn = document.getElementById('pay-now-btn');
+    const closeCheckoutBtn = document.getElementById('close-checkout-btn');
+    const checkoutFormContainer = document.querySelector('.checkout-form-container');
+    const addToCartButtons = document.querySelectorAll('.product__btn');
+    const shoppingCartDiv = document.querySelector('.shopping-cart');
+
+    // Function to show/hide the checkout form
+    checkoutBtn.onclick = () => {
+        checkoutFormContainer.classList.add('active');
+    };
+    closeCheckoutBtn.onclick = () => {
+        checkoutFormContainer.classList.remove('active');
+    };
+
+    // Handle 'Add To Cart' button clicks
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            // Get product details
+            const productElement = event.target.closest('.product');
+            const productName = productElement.querySelector('.product__footer h3').textContent;
+            const productPrice = parseFloat(productElement.querySelector('.product__price h4').textContent.replace('$', ''));
+            const productImage = productElement.querySelector('.product__header img').src;
+
+            // Create and add the new item to the shopping cart
+            const newCartItem = document.createElement('div');
+            newCartItem.classList.add('box');
+            newCartItem.innerHTML = `
+              <i class="fas fa-trash"></i>
+              <img src="${productImage}" alt="${productName}">
+              <div class="content">
+                <h3>${productName}</h3>
+                <span class="price">$${productPrice.toFixed(2)}/-</span>
+                <span class="quantity">qty : 1</span>
+              </div>
+            `;
+            shoppingCartDiv.insertBefore(newCartItem, shoppingCartDiv.querySelector('.total'));
+
+            // Update the total price and cart count
+            let currentTotal = parseFloat(shoppingCartDiv.querySelector('.total').textContent.replace('Total : $', '').replace('/-', ''));
+            let newTotal = currentTotal + productPrice;
+            shoppingCartDiv.querySelector('.total').textContent = `Total : $${newTotal.toFixed(2)}/-`;
+
+            let currentIconTotal = parseInt(document.getElementById('cart__total').textContent);
+            document.getElementById('cart__total').textContent = currentIconTotal + 1;
+
+            // Immediately open the checkout form after adding an item to the cart
+            checkoutFormContainer.classList.add('active');
+        });
+    });
+
+    // Handle cart item removal
+    shoppingCartDiv.addEventListener('click', (event) => {
+        if (event.target.classList.contains('fa-trash')) {
+            const itemToRemove = event.target.closest('.box');
+            const itemPrice = parseFloat(itemToRemove.querySelector('.price').textContent.replace('$', '').replace('/-', ''));
+
+            let currentTotal = parseFloat(shoppingCartDiv.querySelector('.total').textContent.replace('Total : $', '').replace('/-', ''));
+            let newTotal = currentTotal - itemPrice;
+            shoppingCartDiv.querySelector('.total').textContent = `Total : $${newTotal.toFixed(2)}/-`;
+
+            let currentIconTotal = parseInt(document.getElementById('cart__total').textContent);
+            document.getElementById('cart__total').textContent = currentIconTotal - 1;
+
+            itemToRemove.remove();
+        }
+    });
+
+    // Handle payment submission
+    payNowBtn.addEventListener('click', async (event) => {
+        const { token, error } = await stripe.createToken(card);
+        if (error) {
+            document.getElementById('card-errors').textContent = error.message;
+        } else {
+            const response = await fetch('https://your-backend-api.com/charge', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: token.id, amount: 135469 })
+            });
+            const result = await response.json();
+            if (result.success) {
+                alert('Payment successful!');
+                checkoutFormContainer.classList.remove('active');
+            } else {
+                alert('Payment failed: ' + result.message);
+            }
+        }
+    });
+  </script>
+  <div class="feedback-button">
+    <a href="mailto:your_email@example.com?subject=Website Feedback">Send Feedback</a>
+</div>
+<section class="section newsletter" id="contact">
+  <div class="container">
+    <div class="newsletter__content">
+      <div class="newsletter__data">
+        <h3>SUBSCRIBE TO OUR NEWSLETTER</h3>
+        <p>A short sentence describing what someone will receive by subscribing</p>
+      </div>
+      <form action="#" method="POST"> 
+        <input type="email" placeholder="Enter your email address" class="newsletter__email" name="email">
+        <button type="submit" class="newsletter__link">subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+</body>
 </html>
