@@ -1,2 +1,10 @@
-Flask
-flask-cors
+flask==2.0.1
+flask-cors==3.0.10
+langchain-core==0.1.5
+langchain-google-genai==0.0.5
+langchain-community==0.0.9
+langchain-chroma==0.2.6
+chromadb==0.4.15
+pydantic==1.10.8
+python-dotenv==0.21.1
+uuid==1.30
