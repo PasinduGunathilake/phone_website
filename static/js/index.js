@@ -121,7 +121,7 @@ document.querySelector('#search-btn').onclick=()=>{
  
 }
 
-// Chatbot logic
+// Updated Chatbot logic
 document.addEventListener('DOMContentLoaded', function() {
   const toggleBtn = document.getElementById('chatbot-toggle');
   const closeBtn = document.getElementById('chatbot-close');
@@ -152,6 +152,29 @@ document.addEventListener('DOMContentLoaded', function() {
     if (loading) loading.remove();
   }
 
+  // Function to send message to backend API
+  async function sendMessageToAPI(text) {
+    try {
+      const response = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: text }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      
+      const data = await response.json();
+      return data.response;
+    } catch (error) {
+      console.error('Error sending message to API:', error);
+      return "Sorry, I couldn't connect to the server. Please try again later.";
+    }
+  }
+
   if (toggleBtn && closeBtn && windowEl && form && input && messages) {
     toggleBtn.addEventListener('click', function() {
       windowEl.classList.toggle('chatbot-hide');
@@ -164,23 +187,23 @@ document.addEventListener('DOMContentLoaded', function() {
       windowEl.classList.add('chatbot-hide');
     });
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
       const text = input.value.trim();
       if (!text) return;
+      
       appendMessage(text, 'user');
       input.value = '';
       appendLoading();
-      setTimeout(() => {
+      
+      try {
+        const reply = await sendMessageToAPI(text);
         removeLoading();
-        // Simple bot reply logic
-        let reply = "Sorry, I'm just a demo bot!";
-        if (/hello|hi|hey/i.test(text)) reply = "Hello! How can I help you today?";
-        else if (/price|cost/i.test(text)) reply = "For pricing information, please check our products section.";
-        else if (/contact|support/i.test(text)) reply = "You can contact us via the Contact section below.";
-        else if (/bye|goodbye/i.test(text)) reply = "Goodbye! Have a great day!";
         appendMessage(reply, 'bot');
-      }, 700);
+      } catch (error) {
+        removeLoading();
+        appendMessage("Sorry, I'm having trouble connecting right now.", 'bot');
+      }
     });
 
     // Optional: greet on open
@@ -188,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleBtn.addEventListener('click', function() {
       if (!greeted && windowEl.classList.contains('chatbot-hide') === false) {
         setTimeout(() => {
-          appendMessage("Hi! I'm your assistant. Ask me anything about our shop.", 'bot');
+          appendMessage("Hi! I'm your assistant. Ask me anything about our phones!", 'bot');
         }, 400);
         greeted = true;
       }
