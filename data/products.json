@@ -1,185 +1,350 @@
 {
-    "products": [{
-            "id": 6,
-            "title": "Apple iPhone 11",
-            "image": "./images/products/iphone/iphone3.jpeg",
-            "price": 760,
-            "category": "Featured Products"
-        },
-
-        {
-            "id": 3,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone2.jpeg",
-            "price": 265,
-            "category": "Special Products"
-        },
-        {
-            "id": 4,
-            "title": "Apple iPhone 11",
-            "image": "./images/products/iphone/iphone2.jpeg",
-            "price": 850,
-            "category": "Special Products"
-        },
-        {
-            "id": 8,
-            "title": "Apple iPhone 11",
-            "image": "./images/products/iphone/iphone4.jpeg",
-            "price": 290,
-            "category": "Featured Products"
-        },
-        {
-            "id": 5,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone3.jpeg",
-            "price": 250,
-            "category": "Special Products"
-        },
-
-        {
-            "id": 7,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone4.jpeg",
-            "price": 365,
-            "category": "Featured Products"
-        },
-
-
-        {
-            "id": 10,
-            "title": "Apple iPhone 11 Pro",
-            "image": "./images/products/iphone/iphone5.jpeg",
-            "price": 385,
-            "category": "Special Products"
-        },
-        {
-            "id": 11,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone6.jpeg",
-            "price": 475,
-            "category": "Special Products"
-        },
-        {
-            "id": 13,
-            "title": "Apple iPhone 11",
-            "image": "./images/products/iphone/iphone6.jpeg",
-            "price": 800,
-            "category": "Trending Products"
-        },
-        {
-            "id": 12,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone7.jpeg",
-            "price": 850,
-            "category": "Special Products"
-        },
-
-        {
-            "id": 14,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone7.jpeg",
-            "price": 360,
-            "category": "Trending Products"
-        },
-        {
-            "id": 9,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone5.jpeg",
-            "price": 320,
-            "category": "Special Products"
-        },
-        {
-            "id": 15,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone8.jpeg",
-            "price": 305,
-            "category": "Trending Products"
-        },
-        {
-            "id": 16,
-            "title": "Samsung Galaxy",
-            "image": "./images/products/sumsung/samsung6.jpeg",
-            "price": 400,
-            "category": "Special Products"
-        },
-        {
-            "id": 17,
-            "title": "Samsung Galaxy",
-            "image": "./images/products/sumsung/samsung5.jpeg",
-            "price": 550,
-            "category": "Trending Products"
-        },
-        {
-            "id": 2,
-            "title": "Apple iPhone 11",
-            "image": "./images/products/iphone/iphone1.jpeg",
-            "price": 300,
-            "category": "Special Products"
-        },
-        {
-            "id": 18,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone9.jpeg",
-            "price": 630,
-            "category": "Trending Products"
-        },
-        {
-            "id": 20,
-            "title": "Samsung Galaxy",
-            "image": "./images/products/sumsung/samsung4.jpeg",
-            "price": 270,
-            "category": "Special Products"
-        },
-        {
-            "id": 19,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone10.jpeg",
-            "price": 250,
-            "category": "Trending Products"
-        },
-        {
-            "id": 1,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone1.jpeg",
-            "price": 265,
-            "category": "Special Products"
-        },
-        {
-            "id": 24,
-            "title": "Samsung Galaxy",
-            "image": "./images/products/sumsung/samsung2.jpeg",
-            "price": 500,
-            "category": "Featured Products"
-        },
-        {
-            "id": 21,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone11.jpeg",
-            "price": 700,
-            "category": "Trending Products"
-        },
-
-        {
-            "id": 25,
-            "title": "Samsung Galaxy",
-            "image": "./images/products/sumsung/samsung1.jpeg",
-            "price": 450,
-            "category": "Special Products"
-        },
-        {
-            "id": 22,
-            "title": "Samsung Galaxy",
-            "image": "./images/products/sumsung/samsung3.jpeg",
-            "price": 460,
-            "category": "Trending Products"
-        },
-        {
-            "id": 23,
-            "title": "Sony WH-CH510",
-            "image": "./images/products/headphone/headphone12.jpeg",
-            "price": 600,
-            "category": "Featured Products"
-        }
-
-    ]
+    "products":[
+  {
+    "id": 1,
+    "name": "Apple iPhone XR",
+    "price": 250.99,
+    "images": [
+      "/static/images/products/iPhone/iphone1.jpeg",
+      "/static/images/products/iPhone/iphone2.jpeg",
+      "/static/images/products/iPhone/iphone3.jpeg",
+      "/static/images/products/iPhone/iphone4.jpeg",
+      "/static/images/products/iPhone/iphone5.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 3,
+    "description": "Powerful iPhone XR with amazing features.",
+    "brand": "Apple",
+    "type": "Phone",
+    "stock": 7,
+    "colors": ["blue", "red", "black"],
+    "sizes": ["6.1", "6.5"]
+  },
+  {
+    "id": 2,
+    "name": "Sony WH-CH510",
+    "price": 265,
+    "images": [
+      "/static/images/products/headphone/headphone1.jpeg",
+      "/static/images/products/headphone/headphone2.jpeg",
+      "/static/images/products/headphone/headphone3.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 5,
+    "description": "Wireless Sony headphones with clear sound quality.",
+    "brand": "Sony",
+    "type": "Headphone",
+    "stock": 12,
+    "colors": ["black", "white"],
+    "sizes": ["Standard"]
+  },
+  {
+    "id": 3,
+    "name": "Samsung Galaxy S21",
+    "price": 699,
+    "images": [
+      "/static/images/products/samsung/samsung1.jpeg",
+      "/static/images/products/samsung/samsung2.jpeg",
+      "/static/images/products/samsung/samsung3.jpeg"
+    ],
+    "rating": 5,
+    "reviews": 8,
+    "description": "Samsung Galaxy S21 with stunning display and performance.",
+    "brand": "Samsung",
+    "type": "Phone",
+    "stock": 10,
+    "colors": ["gray", "white", "purple"],
+    "sizes": ["6.2", "6.5"]
+  },
+  {
+    "id": 4,
+    "name": "Apple iPhone 11",
+    "price": 850,
+    "images": [
+      "/static/images/products/iPhone/iphone6.jpeg",
+      "/static/images/products/iPhone/iphone7.jpeg",
+      "/static/images/products/iPhone/iphone8.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 6,
+    "description": "Apple iPhone 11 with advanced camera and performance.",
+    "brand": "Apple",
+    "type": "Phone",
+    "stock": 5,
+    "colors": ["black", "yellow", "green"],
+    "sizes": ["6.1"]
+  },
+  {
+    "id": 5,
+    "name": "Sony WH-CH710N",
+    "price": 320,
+    "images": [
+      "/static/images/products/headphone/headphone4.jpeg",
+      "/static/images/products/headphone/headphone5.jpeg"
+    ],
+    "rating": 5,
+    "reviews": 7,
+    "description": "Noise-cancelling over-ear headphones.",
+    "brand": "Sony",
+    "type": "Headphone",
+    "stock": 8,
+    "colors": ["black", "silver"],
+    "sizes": ["Standard"]
+  },
+  {
+    "id": 6,
+    "name": "Samsung Galaxy Note 20",
+    "price": 850,
+    "images": [
+      "/static/images/products/samsung/samsung4.jpeg",
+      "/static/images/products/samsung/samsung5.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 5,
+    "description": "Samsung Note 20 with large screen and high performance.",
+    "brand": "Samsung",
+    "type": "Phone",
+    "stock": 6,
+    "colors": ["black", "bronze"],
+    "sizes": ["6.7"]
+  },
+  {
+    "id": 7,
+    "name": "Apple iPhone 12 Pro",
+    "price": 950,
+    "images": [
+      "/static/images/products/iPhone/iphone9.jpeg",
+      "/static/images/products/iPhone/iphone10.jpeg"
+    ],
+    "rating": 5,
+    "reviews": 10,
+    "description": "Apple iPhone 12 Pro with Pro camera system.",
+    "brand": "Apple",
+    "type": "Phone",
+    "stock": 4,
+    "colors": ["silver", "graphite", "pacific blue"],
+    "sizes": ["6.1", "6.7"]
+  },
+  {
+    "id": 8,
+    "name": "Sony WH-XB910N",
+    "price": 365,
+    "images": [
+      "/static/images/products/headphone/headphone6.jpeg",
+      "/static/images/products/headphone/headphone7.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 6,
+    "description": "Extra bass noise-cancelling headphones.",
+    "brand": "Sony",
+    "type": "Headphone",
+    "stock": 9,
+    "colors": ["black", "blue"],
+    "sizes": ["Standard"]
+  },
+  {
+    "id": 9,
+    "name": "Samsung Galaxy S20 FE",
+    "price": 450,
+    "images": [
+      "/static/images/products/samsung/samsung6.jpeg",
+      "/static/images/products/samsung/samsung7.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 5,
+    "description": "Samsung S20 FE with bright display and fast processor.",
+    "brand": "Samsung",
+    "type": "Phone",
+    "stock": 7,
+    "colors": ["red", "blue", "gray"],
+    "sizes": ["6.5"]
+  },
+  {
+    "id": 10,
+    "name": "Apple iPhone SE",
+    "price": 399,
+    "images": [
+      "/static/images/products/iPhone/iphone11.jpeg",
+      "/static/images/products/iPhone/iphone12.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 4,
+    "description": "Apple iPhone SE with compact design and fast performance.",
+    "brand": "Apple",
+    "type": "Phone",
+    "stock": 12,
+    "colors": ["black", "white", "red"],
+    "sizes": ["4.7"]
+  },
+  {
+    "id": 11,
+    "name": "Sony WH-1000XM4",
+    "price": 475,
+    "images": [
+      "/static/images/products/headphone/headphone8.jpeg",
+      "/static/images/products/headphone/headphone9.jpeg"
+    ],
+    "rating": 5,
+    "reviews": 12,
+    "description": "Industry-leading noise cancelling headphones.",
+    "brand": "Sony",
+    "type": "Headphone",
+    "stock": 10,
+    "colors": ["black", "silver"],
+    "sizes": ["Standard"]
+  },
+  {
+    "id": 12,
+    "name": "Samsung Galaxy Z Fold3",
+    "price": 1599,
+    "images": [
+      "/static/images/products/samsung/samsung8.jpeg",
+      "/static/images/products/samsung/samsung9.jpeg"
+    ],
+    "rating": 5,
+    "reviews": 9,
+    "description": "Samsung Z Fold3 with foldable screen and multi-tasking features.",
+    "brand": "Samsung",
+    "type": "Phone",
+    "stock": 3,
+    "colors": ["phantom black", "silver"],
+    "sizes": ["7.6"]
+  },
+  {
+    "id": 13,
+    "name": "Apple iPhone 13 Mini",
+    "price": 699,
+    "images": [
+      "/static/images/products/iPhone/iphone13.jpeg",
+      "/static/images/products/iPhone/iphone14.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 5,
+    "description": "Apple iPhone 13 Mini with compact design.",
+    "brand": "Apple",
+    "type": "Phone",
+    "stock": 6,
+    "colors": ["red", "blue", "midnight"],
+    "sizes": ["5.4"]
+  },
+  {
+    "id": 14,
+    "name": "Sony WH-CH700N",
+    "price": 305,
+    "images": [
+      "/static/images/products/headphone/headphone10.jpeg",
+      "/static/images/products/headphone/headphone11.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 4,
+    "description": "Wireless over-ear headphones with noise cancellation.",
+    "brand": "Sony",
+    "type": "Headphone",
+    "stock": 7,
+    "colors": ["black", "gray"],
+    "sizes": ["Standard"]
+  },
+  {
+    "id": 15,
+    "name": "Samsung Galaxy A52",
+    "price": 400,
+    "images": [
+      "/static/images/products/samsung/samsung10.jpeg",
+      "/static/images/products/samsung/samsung11.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 5,
+    "description": "Samsung Galaxy A52 with vibrant AMOLED display.",
+    "brand": "Samsung",
+    "type": "Phone",
+    "stock": 8,
+    "colors": ["black", "white", "violet"],
+    "sizes": ["6.5"]
+  },
+  {
+    "id": 16,
+    "name": "Apple iPhone 12 Mini",
+    "price": 699,
+    "images": [
+      "/static/images/products/iPhone/iphone15.jpeg",
+      "/static/images/products/iPhone/iphone16.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 6,
+    "description": "Apple iPhone 12 Mini with high performance and compact design.",
+    "brand": "Apple",
+    "type": "Phone",
+    "stock": 5,
+    "colors": ["black", "white", "blue"],
+    "sizes": ["5.4"]
+  },
+  {
+    "id": 17,
+    "name": "Sony WH-H910N",
+    "price": 365,
+    "images": [
+      "/static/images/products/headphone/headphone12.jpeg",
+      "/static/images/products/headphone/headphone13.jpeg"
+    ],
+    "rating": 4,
+    "reviews": 7,
+    "description": "Sony over-ear headphones with extra bass.",
+    "brand": "Sony",
+    "type": "Headphone",
+    "stock": 6,
+    "colors": ["black", "blue"],
+    "sizes": ["Standard"]
+  },
+  {
+    "id": 18,
+    "name": "Samsung Galaxy S21 Ultra",
+    "price": 1200,
+    "images": [
+      "/static/images/products/samsung/samsung12.jpeg",
+      "/static/images/products/samsung/samsung13.jpeg"
+    ],
+    "rating": 5,
+    "reviews": 10,
+    "description": "Samsung S21 Ultra with stunning 108MP camera and big screen.",
+    "brand": "Samsung",
+    "type": "Phone",
+    "stock": 4,
+    "colors": ["black", "silver"],
+    "sizes": ["6.8"]
+  },
+  {
+    "id": 19,
+    "name": "Apple iPhone 13 Pro Max",
+    "price": 1100,
+    "images": [
+      "/static/images/products/iPhone/iphone17.jpeg",
+      "/static/images/products/iPhone/iphone18.jpeg"
+    ],
+    "rating": 5,
+    "reviews": 12,
+    "description": "Apple iPhone 13 Pro Max with Pro camera and super Retina display.",
+    "brand": "Apple",
+    "type": "Phone",
+    "stock": 3,
+    "colors": ["graphite", "silver", "gold"],
+    "sizes": ["6.7"]
+  },
+  {
+    "id": 20,
+    "name": "Sony WH-1000XM5",
+    "price": 500,
+    "images": [
+      "/static/images/products/headphone/headphone14.jpeg",
+      "/static/images/products/headphone/headphone15.jpeg"
+    ],
+    "rating": 5,
+    "reviews": 8,
+    "description": "Sony's latest noise-cancelling over-ear headphones.",
+    "brand": "Sony",
+    "type": "Headphone",
+    "stock": 9,
+    "colors": ["black", "silver"],
+    "sizes": ["Standard"]
+  }
+]
 }
