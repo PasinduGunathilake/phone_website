@@ -1,0 +1,5 @@
+.env
+*.bin
+.vscode
+_pycache__
+.sqlite
