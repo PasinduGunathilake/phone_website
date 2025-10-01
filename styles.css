@@ -7,7 +7,7 @@ Reset
   --primaryColor: #f1f1f1;
   --black: #222;
   --black2: #555;
-  --black3: #252525;
+  --black3: #282828; /* edited */
   --black4: #000;
   --black5: #212529;
   --orange: #eb0028;
@@ -16,6 +16,25 @@ Reset
   --grey2: #666;
   --grey3: #ccc;
   --secondaryColor: #2b1f4d;
+  --yellow: #ffcc00;
+  --green: #59b210;
+  --blue: rgb(56, 10, 223);
+}
+
+/* edited */
+.darkMode {
+  --primaryColor: #000000;
+  --black: #f1f1f1;
+  --black2: #8a8a8a;
+  --black3: #e1e1e1;
+  --black4: #ffffff;
+  --black5: #f8f9fa;
+  --orange: #eb0028;
+  --white: #222222;
+  --grey: #585757;
+  --grey2: #999;
+  --grey3: #444;
+  --secondaryColor: #9a76ff;
   --yellow: #ffcc00;
   --green: #59b210;
   --blue: rgb(56, 10, 223);
@@ -34,8 +53,9 @@ html {
   overflow-x: hidden;
 }
 
-body{
+body {
   overflow-x: hidden;
+  background-color: var(--white); /* edited */
 }
 
 body,
@@ -88,7 +108,8 @@ Navigation
 .navigation {
   position: relative;
   height: 7rem;
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 1.5rem var(--black3);/* edited */
+  background-color: var(--grey); /* edited */
 }
 
 .nav {
@@ -98,6 +119,8 @@ Navigation
   height: 100%;
   height: 7rem;
   padding: 0 1rem;
+  color: var(--grey); /* edited */
+  background-color: var(--grey); /* edited */
 }
 
 .fix__nav {
@@ -105,7 +128,7 @@ Navigation
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--white);
+  background-color: var(--grey); /* edited */
   z-index: 1200;
 }
 
@@ -184,8 +207,8 @@ Navigation
 }
 
 .nav__icons .icon__item:hover {
-  background-color: var(--orange);
-  border: 1px solid var(--black);
+  background-color: var(--orange); /* edited */
+  border: 1px solid var(--black); /* edited */
 }
 
 .nav__icons .icon__item:not(:last-child) {
@@ -343,7 +366,7 @@ Hero Area
 
 .hero,
 .hero .glide__slides {
-  background-color: var(--primaryColor);
+  background-color: var(--primaryColor); /* edited */
   position: relative;
   width: 100%;
   height: 100vh;
@@ -361,6 +384,7 @@ Hero Area
   border: none;
   background-color: var(--grey);
   transition: all 0.5s ease-in-out 0.2s;
+  border-radius: 50%; /* edited */
 }
 
 .glide__arrow:hover {
@@ -392,10 +416,6 @@ Hero Area
   height: 1.8rem;
   width: 1.8rem;
   fill: var(--primaryColor);
-}
-
-.hero .glide__arrow {
-  border-radius: 50%;
 }
 
 .hero__center {
@@ -569,15 +589,11 @@ Collection
 
 .collection__content a:link,
 .collection__content a:visited {
-  font-weight: 700;
-  display: inline-block;
-  padding: 1rem 1.4rem;
-  margin-top: 1.3rem;
-  border-radius: 3rem;
-  border: 2px solid var(--secondaryColor);
-  color: var(--primaryColor);
-  background-color: var(--secondaryColor);
-  transition: all 0.3s ease-in-out;
+  border-radius: 3rem; /* edited */
+  border: 2px solid var(--secondaryColor); /* edited */
+  color: var(--primaryColor); /* edited */
+  background-color: var(--secondaryColor); /* edited */
+  transition: all 0.3s ease-in-out; /* edited */
 }
 
 .collection__content a:hover {
@@ -873,6 +889,10 @@ span.dot::before {
   border: 1px solid var(--black);
   color: var(--black);
   cursor: pointer;
+  background-color: var(--black); /* edited */
+  color: var(--white); /* edited */
+  border: none; /* edited */
+  transition: background 0.3s; /* edited */
 }
 
 .product__btn:focus {
@@ -880,8 +900,8 @@ span.dot::before {
 }
 
 .product__btn:hover {
-  background-color: var(--black);
-  color: var(--primaryColor);
+  background-color: var(--orange); /* edited */
+  color: var(--white); /* edited */
 }
 
 .latest__products .glide__arrow,
@@ -1240,8 +1260,6 @@ Go Up
 }
 
 @media only screen and (min-width: 1250px) {
-  /* .hero__left span{} */
-
   .hero__left h1{
     font-size: 5rem;
   }
@@ -1604,7 +1622,7 @@ News Section
   display: inline-block;
   padding: 1.4rem 4rem;
   border: 1px solid var(--black);
-  color: var(--black);
+  color: black; /* edited */
   cursor: pointer;
   transition: 0.3s;
 }
@@ -1614,9 +1632,9 @@ News Section
 }
 
 .card__footer a button:hover {
-  border: 1px solid var(--black);
-  color: var(--white);
-  background-color: var(--black);
+  border: 1px solid var(--white);/* edited */
+  color: white;/* edited */
+  background-color: var(--orange); /* edited */
 }
 
 /*
@@ -1672,7 +1690,7 @@ NewsLetter
 }
 
 .newsletter__link:hover {
-  background-color: #000;
+  background-color: var(--orange); /* edited */
 }
 
 /*
@@ -2369,7 +2387,6 @@ Cart Area
 
 .cart__totals {
   width: 60rem;
-  /* height: 30rem; */
   margin: 5rem auto 0 auto;
   color: var(--black5);
   padding: 4rem 5rem;
@@ -2611,4 +2628,71 @@ Cart Area Media Query
     .searchF .search-form{
       top: 14%;
     }
+}
+
+/* this entire section added */
+
+
+/*
+======================
+dark mode
+======================
+*/
+.ctb-button
+{
+  background-color: var(--secondaryColor);
+}
+
+#theme-switch
+{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+#theme-switch svg
+{
+  fill: var(--yellow);
+}
+
+#theme-switch svg:last-child
+{
+  display: none;
+}
+
+.darkMode #theme-switch svg:first-child
+{
+  display: none;
+}
+
+.darkMode #theme-switch svg:last-child
+{
+  display: block;
+}
+
+/* Make boxes and images rounded */
+.collection__box,
+.product,
+.new__card,
+.popup__content,
+.cart__totals,
+.product__header img,
+.collection__box img,
+.img__container img,
+.product__picture img,
+.popup-img__container img.popup__img {
+  border-radius: 1.5rem; /* edited */
+}
+
+/* If you want even more rounded corners for buttons */
+.product__btn,
+.card__footer a button,
+.collection__content a,
+.right__content a {
+  border-radius: 2rem; /* edited */
 }
