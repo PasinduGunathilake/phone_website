@@ -1,159 +1,161 @@
-# Responsive Ecommerce Website (Flask + MongoDB)
+# Responsive Ecommerce Website 📱🛒
 
-This is a small responsive e-commerce demo implemented with a Flask backend and a static frontend (templates + static files). The app uses MongoDB for persistence (users, products, cart) and GridFS for storing uploaded product images.
+A modern, mobile-friendly ecommerce template built with **Flask** (Python), **MongoDB**, and a static frontend (HTML, CSS, JS). Features product catalog, user authentication, admin dashboard, shopping cart, and an advanced **AI-powered chatbot** for product support via Retrieval-Augmented Generation (RAG).
 
-Key features
-- User registration, login, logout
-- Password reset (email or console fallback)
-- Simple cart APIs (add/get/update/remove/clear)
-- Product CRUD endpoints intended for admin users
-- Admin UI (protected by a user with role "admin")
+---
 
-API endpoints (selected)
-- POST /api/register            { name, email, password }
-- POST /api/login               { email, password }
-- POST /api/logout
-- POST /api/forgot-password     { email }
-- POST /api/reset-password      { email, code, newPassword }
-- POST /api/verify-reset-code   { email, code }
-- GET  /api/check-auth
-- GET  /api/products
-- GET  /api/products/<id>/image
-- POST /api/products            (admin, multipart or JSON)
-- PUT  /api/products/<id>       (admin)
-- DELETE /api/products/<id>     (admin)
-- POST /api/cart/add            (requires auth)
-- GET  /api/cart/get            (requires auth)
+## Features
 
-Requirements
-- Python 3.10+ recommended
-- MongoDB (local or Atlas)
+- **Product Catalog**: Browse phones with images, specs, and pricing
+- **User Auth**: Registration, login, logout, and password reset (email or console)
+- **Admin Dashboard**: Product CRUD UI and APIs (admin only)
+- **Shopping Cart**: Add/update/remove/clear cart (session or user)
+- **MongoDB Backend**: Stores users, products, cart; product images via GridFS
+- **API Endpoints**: RESTful APIs for frontend and external integrations
+- **Conversational AI Chatbot**: Ask about phones, specs, compare models, and automate checkout (powered by LangChain + Google Gemini + ChromaDB)
+- **Email Notifications**: Optional SMTP for password reset
+- **Testing**: Scripts and test files for API and end-to-end testing
 
-Included in this repo
-- Flask backend: `app.py`
-- Scripts: `create_admin.py` (create/update admin), `seed_products.py` (seed product data)
-- data/products.json and data/mobile_phones.csv (sample data)
+---
 
-Quick start
-1. Create and activate a virtual environment
+## Quick Start
 
-   - Windows (PowerShell):
+### 1. Clone & Environment Setup
 
-     ```powershell
-     python -m venv .venv; .\\.venv\\Scripts\\Activate.ps1
-     ```
+```bash
+git clone https://github.com/youruser/yourrepo.git
+cd yourrepo
+python -m venv .venv
+source .venv/bin/activate  # or .\.venv\Scripts\Activate.ps1 on Windows
+pip install -r requirements.txt
+```
 
-2. Install Python dependencies
+### 2. Configure Environment Variables
 
-   ```powershell
-   pip install -r requirements.txt
-   ```
+Create a `.env` file in the root:
 
-3. Configure environment variables
+```dotenv
+FLASK_SECRET_KEY=change-me
+MONGO_URI=mongodb://localhost:27017/
+MONGO_DB_NAME=phonestoredb
+SMTP_SERVER=smtp.gmail.com         # optional for password reset
+SMTP_FROM_EMAIL=you@example.com    # optional
+SMTP_FROM_PASSWORD=your-app-pass   # optional
+SMTP_USE_TLS=true                  # optional
+GEMINI_API_KEY=your_gemini_key     # for chatbot
+```
 
-   Create a `.env` file in the project root or set environment variables in your shell. Minimum recommended vars:
+If SMTP is not set, password reset codes print to the server console for dev/testing.
 
-   - FLASK_SECRET_KEY (used for sessions)
-   - MONGO_URI (default: mongodb://localhost:27017/)
-   - MONGO_DB_NAME (default: phonestoredb)
-   - SMTP_SERVER / SMTP_FROM_EMAIL / SMTP_FROM_PASSWORD (optional: for real email delivery)
+### 3. Seed Products & Create Admin
 
-   Example `.env`:
+```bash
+python seed_products.py      # Optional: pre-load products
+python create_admin.py       # Optional: set up admin user
+```
 
-   ```text
-   FLASK_SECRET_KEY=change-me
-   MONGO_URI=mongodb://localhost:27017/
-   MONGO_DB_NAME=phonestoredb
-   SMTP_SERVER=smtp.gmail.com
-   SMTP_FROM_EMAIL=you@example.com
-   SMTP_FROM_PASSWORD=app-password
-   SMTP_USE_TLS=true
-   ```
+### 4. Run MongoDB
 
-   Note: If SMTP credentials are not provided, password reset codes are printed to the server console to support development/testing.
+- Local: start `mongod`
+- Or use [MongoDB Atlas](https://www.mongodb.com/atlas/database)
 
-4. Start MongoDB (or configure Atlas)
+### 5. Start the App
 
-   - Local: run `mongod` or use the MongoDB service.
+```bash
+python app.py
+# or: flask run
+```
+Visit [http://localhost:5000/](http://localhost:5000/) in your browser.
 
-5. Seed products (optional)
+---
 
-   ```powershell
-   python seed_products.py
-   ```
+## API Endpoints (Selection)
 
-6. Create an admin user (optional, required for admin UI/endpoints)
+- `POST   /api/register`             `{ name, email, password }`
+- `POST   /api/login`                `{ email, password }`
+- `POST   /api/logout`
+- `POST   /api/forgot-password`      `{ email }`
+- `POST   /api/reset-password`       `{ email, code, newPassword }`
+- `GET    /api/products`
+- `GET    /api/products/<id>/image`
+- `POST   /api/products`             *(admin, JSON or multipart)*
+- `PUT    /api/products/<id>`        *(admin)*
+- `DELETE /api/products/<id>`        *(admin)*
+- `POST   /api/cart/add`
+- `GET    /api/cart/get`
+- `POST   /api/chatbot`              *(conversational AI, see below)*
 
-   ```powershell
-   python create_admin.py
-   ```
+---
 
-7. Run the app
+## Conversational AI Chatbot (RAG)
 
-   ```powershell
-   python app.py
-   ```
+**Supercharge your store with a context-aware AI assistant!**
 
-   The app listens on port 5000 by default and will print connection status to MongoDB on startup.
+- **RAG (Retrieval-Augmented Generation)**: Combines product database (vectorized with ChromaDB) and Google Gemini LLM for accurate, real-time Q&A.
+- **Tech Stack**: [LangChain](https://github.com/langchain-ai/langchain), [ChromaDB](https://www.trychroma.com/), [Google Generative AI](https://ai.google.dev/).
+- **Capabilities**:
+  - Ask about phone specs/pricing
+  - Compare devices (“Compare Galaxy S23 and iPhone 14”)
+  - Get recommendations
+  - Automate checkout (chatbot collects info, returns checkout JSON)
+- **Enable**:
+  1. Set `GEMINI_API_KEY` in `.env`
+  2. Install Python deps: `pip install -r requirements.txt`
+  3. Ensure `chroma_db/chroma.sqlite3` exists (prebuilt with phone data)
+  4. Use the chat widget on the main page!
 
-Testing and usage
-- Open http://localhost:5000/ to view the site.
-- Use the `/login/` page to sign in.
-- The `create_admin.py` script will create/update a user with role "admin" in the users collection.
-- To test password reset: POST to `/api/forgot-password` with {"email": "..."}. If SMTP isn't configured, the code will be logged to the server console.
+**Chatbot Architecture**:
 
-Notes and troubleshooting
-- If MongoDB connection fails, `app.py` prints an error and continues in a degraded state (collections set to None). Ensure `MONGO_URI` and the MongoDB server are reachable.
-- The app creates unique indexes on `users.email` and `products.id` when applicable.
-- Uploaded product images are stored in GridFS. If GridFS isn't available (no DB), image uploads will fail.
+```
+User → [Chat Widget] → [Flask API] → [ChromaDB Retriever] → [Gemini LLM via LangChain] → Response
+```
 
-Developer tips
-- The repository contains small client-side JS under `static/js/` and templates in `templates/`.
-- To run tests (if present), inspect `test_*.py` files and run them with pytest. There are a few test files included (e.g. `test_api.py`).
+---
 
-License & Credits
-- MIT-style demo for educational use.
+## File Structure Highlights
 
-If you'd like, I can also:
-- Add a short CONTRIBUTING section
-- Add example Postman collection or curl examples for key endpoints
-- Create a minimal Dockerfile and docker-compose for MongoDB + app
-# Responsive Ecommerce Website Using HTML CSS JAVASCRIPT
+- `app.py`              – Flask backend & API endpoints
+- `chatbot_backend.py`  – RAG chatbot logic (LangChain, ChromaDB, Gemini)
+- `chroma_db/`          – Vector DB for product specs
+- `static/`, `templates/` – Frontend assets
+- `test_*.py`           – Test scripts
+- `data/`               – Sample product data
 
-## Backend Auth with MongoDB
+---
 
-This project uses Flask for the backend and MongoDB for authentication. The frontend calls these endpoints:
+## Developer Notes & Troubleshooting
 
-- POST /api/register { name, email, password }
-- POST /api/login { email, password }
-- POST /api/logout
-- POST /api/forgot-password { email }
-- POST /api/reset-password { email, code, newPassword }
-- GET  /api/check-auth
+- If MongoDB is unavailable, `app.py` prints an error and disables DB features.
+- Product image uploads require working GridFS.
+- Unique indexes on `users.email` and `products.id` are created if possible.
+- If SMTP is missing, password reset codes are printed to the console.
 
-### Configure Environment
+**Testing**:  
+Run `pytest` on test files like `test_api.py`.
 
-Create a .env file or set environment variables:
+---
 
-- FLASK_SECRET_KEY=change-me
-- MONGO_URI=mongodb://localhost:27017/
-- MONGO_DB_NAME=phone_website
-- SMTP_SERVER=smtp.gmail.com
-- SMTP_PORT=465
-- SMTP_FROM_EMAIL=your_email@example.com
-- SMTP_FROM_PASSWORD=your_app_password
+## Contributing
 
-If SMTP credentials are not set, the reset code will be printed to the server console in development.
+Contributions are welcome! Please open an issue or pull request for bug fixes, features, or documentation improvements.
 
-### Install dependencies
+- Fork the repo and create your branch (`git checkout -b my-feature`)
+- Commit your changes
+- Push to your fork
+- Open a PR describing your change
 
-Use Python 3.12+ if possible.
+---
 
-1. Create a virtual environment
-2. Install requirements
+## License
 
-### Run
+MIT License. See `LICENSE`.
 
-Start a local MongoDB instance (or use MongoDB Atlas), then run the Flask app.
+---
 
-The app will create a unique index on users.email automatically.
+## Credits & Acknowledgments
+
+- [LangChain](https://github.com/langchain-ai/langchain)
+- [Google Generative AI](https://ai.google.dev/)
+- [ChromaDB](https://www.trychroma.com/)
+
+---
