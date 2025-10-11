@@ -7,6 +7,9 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome for chatbot icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <link rel="shortcut icon" href="./static/images/favicon.ico" type="image/x-icon" />
 
@@ -19,12 +22,20 @@
 
   <!-- Custom StyleSheet -->
   <link rel="stylesheet" href="/static/styles.css" />
+  
+  <!-- Dark Mode Critical CSS -->
+  <style>
+    body.darkMode { background-color: #1a1a1a !important; color: #ffffff !important; }
+    body.darkMode .header, body.darkMode .navigation { background-color: #1a1a1a !important; }
+    body.darkMode .nav__logo a, body.darkMode .nav__link { color: #ffffff !important; }
+    body.darkMode .nav__icons .icon__item { border-color: #ffffff !important; }
+    body.darkMode .nav__icons .icon__item svg { fill: #ffffff !important; }
+  </style>
 
   <title>Phone Shop</title>
 </head>
 
 <body>
-
   <!-- Header -->
   <header id="header" class="header">
     <div class="navigation">
@@ -68,25 +79,81 @@
           </div>
 
           <div class="nav__icons">
-            <a href="#" class="icon__item" id="login-btn">
+            <a href="/login/" class="icon__item">
               <svg class="icon__user">
                 <use xlink:href="./static/images/sprite.svg#icon-user"></use>
               </svg>
             </a>
 
-            <a href="#" class="icon__item" id="search-btn">
-              <svg class="icon__search">
-                <use xlink:href="./static/images/sprite.svg#icon-search"></use>
-              </svg>
-            </a>
+            <button id="theme-switch" class="icon__item theme-toggle">
+              <span class="theme-icon">☀️</span>
+            </button>
 
-            <a href="#" class="icon__item" id="cart-btn">
+            <a href="/cart/" class="icon__item" id="cart-btn">
               <svg class="icon__cart">
                 <use xlink:href="./static/images/sprite.svg#icon-shopping-basket"></use>
               </svg>
-              <span id="cart__total">3</span>
+              <span id="cart__total">0</span>
             </a>
+
+          <!--rashmi dev-->
+          <!-- Search & Filter -->
+          <div class="search-wrapper-custom">
+            <input type="text" id="searchBox" placeholder="🔎︎ Search products...">
+            <i id="searchTrigger" class="fa fa-search search-icon"></i>
+
+            <div class="filter-dropdown-custom" id="filterDropdown">
+              <h3><b>Filter Products</b></h3>
+
+              <!-- iPhone Version -->
+              <div class="filter-section">
+                <label for="iphoneVersion"><strong>iPhone Version:</strong></label>
+                <select id="iphoneVersion">
+                  <option value="">-- Select --</option>
+                  <option value="Apple iPhone 11">iPhone 11</option>
+                  <option value="Apple iPhone 11 Pro">iPhone 11 Pro</option>
+                  <option value="Apple iPhone 12">iPhone 12</option>
+                  <option value="Apple iPhone 13">iPhone 13</option>
+                </select>
+              </div> 
+
+              <!-- Samsung Checkbox -->
+              <div class="filter-section">
+                <label for="samsung"><b>Samsung: </b></label>
+                <input type="checkbox" id="samsung" value="Samsung Galaxy">
+              </div>      
+
+              <!-- Sony Checkbox -->
+              <div class="filter-section">
+                <label for="sony"><b>Sony Headphones: </b></label>
+                <input type="checkbox" id="sony" value="Sony WH-CH510">
+              </div>      
+
+              <!-- Sort Products -->
+              <div class="filter-section">
+                <label for="sortPrice"><b>Price Sort by: </b></label>
+                <select id="sortPrice">
+                  <option value="none">-- None --</option>
+                  <option value="asc">Price: Low → High</option>
+                  <option value="desc">Price: High → Low</option>
+                </select>
+              </div>
+
+              <!-- Price -->
+              <div class="filter-section price-filter">
+                <label for="priceRange"> <b>Max Price: </b></label>
+                <span id="priceValue">$1000</span>
+                <input type="range" id="priceRange" min="100" max="3000" step="10" value="3000">
+              </div>
+
+              <button id="clearFilters" class="clear-btn" title="Clears all filters">Clear Filters</button>
+
+              <div class="dropdown-products" id="dropdownProducts"></div>
+              <button id="loadMoreBtn">Load More</button>
+
+
           </div>
+
         </nav>
       </div>
     </div>
@@ -145,6 +212,8 @@
         </div>
       </div>
     </div>
+    <!-- edit -->
+      <!--
     <div class="auth">
       <form action="" class="login-form">
         <h3>Login Now</h3>
@@ -155,12 +224,10 @@
         <input type="submit" value="Login now" class="btn">
       </form>
       </div>
-      <div class="searchF">
-      <form action="" class="search-form">
-        <input type="search" id="search-box" placeholder="Search here..">
-        <label for="search-box" class="fas fa-search"></label>
-    </form>
-  </div>
+      -->
+    <!-- end -->
+
+
 
     <div class="shopping-cart">
         <div class="box">
@@ -241,8 +308,9 @@
           <div class="glide" id="glide_2">
             <div class="glide__track" data-glide-el="track">
               <ul class="glide__slides latest-center">
+                
                 <li class="glide__slide">
-                  <div class="product">
+                  <div class="product" data-product-id="1006">
                     <div class="product__header">
                       <img src="/static/images/products/iPhone/iphone6.jpeg" alt="product">
                     </div>
@@ -268,7 +336,7 @@
                       <div class="product__price">
                         <h4>$750</h4>
                       </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
+                      <button type="button" class="product__btn" data-product-id="1006">Add To Cart</button>
                     </div>
                     <ul>
                       <li>
@@ -296,7 +364,7 @@
                   </div>
                 </li>
                 <li class="glide__slide">
-                  <div class="product">
+                  <div class="product" data-product-id="2005">
                     <div class="product__header">
                       <img src="/static/images/products/sumsung/samsung5.jpeg" alt="product">
                     </div>
@@ -322,7 +390,7 @@
                       <div class="product__price">
                         <h4>$900</h4>
                       </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
+                      <button type="button" class="product__btn" data-product-id="2005">Add To Cart</button>
                     </div>
                     <ul>
                       <li>
@@ -1072,6 +1140,13 @@ Gartner Peer Insights Voice of the Customer for Enterprise Backup and Recovery S
             </span>
             Dream City, USA
           </div>
+      </div>
+      <!--Added Embedded map (Temporary location) -->
+      <div class="footer-top__box">
+        <h3>OUR LOCATION</h3>
+        <div class="embedded-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.8662814578065!2d80.02069417450534!3d9.692452278252185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afe5500135240fd%3A0xde58b9f2919e629!2z4La24Led4Lac4La44LeK4La24La7IEJvYXJkaW5nIEhvdXNl!5e0!3m2!1sen!2slk!4v1759241728051!5m2!1sen!2slk"
+           width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
@@ -1106,8 +1181,8 @@ Gartner Peer Insights Voice of the Customer for Enterprise Backup and Recovery S
           <p>Sign up to our newsletter and save 30% for you next purchase. No spam, we promise!
           </p>
           <form action="#">
-            <input type="email" placeholder="Enter your email..." class="popup__form">
-            <a href="#">Subscribe</a>
+            <input type="email" placeholder="Enter your email..." class="popup__form" required>
+            <a href="#" role="button" aria-label="Subscribe to newsletter">Subscribe</a>
           </form>
         </div>
       </div>
@@ -1124,20 +1199,49 @@ Gartner Peer Insights Voice of the Customer for Enterprise Backup and Recovery S
 -->
 
 <!--chatbot-->
-<div id="chatbot-container" aria-live="polite">
-    <button id="chatbot-toggle" aria-label="Open chatbot" title="Open chatbot">
-      <img src="./static/images/bot.png" alt="Chat" width="40" height="40">
-    </button>
-    <div id="chatbot-window" class="chatbot-hide" role="dialog" aria-modal="true" aria-label="Chatbot">
-      <div id="chatbot-header">
-        <span>Chatbot</span>
-        <button id="chatbot-close" aria-label="Close chatbot" title="Close chatbot">&times;</button>
-      </div>
-      <div id="chatbot-messages" tabindex="0" aria-live="polite"></div>
-      <form id="chatbot-form" autocomplete="off">
-        <input type="text" id="chatbot-input" placeholder="Type a message..." autocomplete="off" aria-label="Type your message" />
-        <button type="submit" aria-label="Send message">Send</button>
-      </form>
+<div class="chatbot-container chatbot-hide" style="display:none;" aria-hidden="true">
+    <div class="chat-header">
+        <div class="avatar-info">
+            <div class="avatar">
+                <img src="/static/images/bot.png" alt="Bot Avatar">
+            </div>
+            <div class="chat-details">
+                <span class="chat-with">Chat with</span>
+                <span class="bot-name">Our Phonshop Assistant</span>
+            </div>
+        </div>
+        <div class="header-icons">
+            <i class="fas fa-ellipsis-v"></i>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+    <div class="response-time">
+        Our Retrival Augmented Generative(RAG) AI Assistant ensures quick and accurate responses.
+    </div>
+    <div class="chat-body">
+        <div class="message received">
+            Hello! Welcome to our mobile phone shop.👋
+            How can I assist you today with finding your perfect phone?
+        </div>
+        <div class="suggestions">
+            <span class="suggestion-button">Apple iPhones</span>
+            <span class="suggestion-button">Samsung Phones</span>
+            <span class="suggestion-button">Headphones</span>
+            <span class="suggestion-button">Latest Products</span>
+        </div>
+    </div>
+    <div class="chat-footer">
+        <div class="input-area">
+            <input type="text" placeholder="Enter your message...">
+            <i class="fas fa-paperclip"></i>
+            <i class="fas fa-microphone"></i>
+        </div>
+        <button class="send-button">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
+    <div class="powered-by">
+        POWERED BY Google<img src="/static/images/gemini.png" alt="Logo">
     </div>
 </div>
 
@@ -1150,6 +1254,14 @@ Gartner Peer Insights Voice of the Customer for Enterprise Backup and Recovery S
   <script src="./static/js/products.js"></script>
   <script src="./static/js/index.js"></script>
   <script src="./static/js/slider.js"></script>
+  <script src="./static/js/darkmode.js"></script>
+  <script src="./static/js/cart.js"></script>
+  <!--rashmi dev edit-->
+  <script src="./static/js/search-filter.js"></script>
+  <!--kasunika dev edit-->
+  <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+  <!--end-->
 
 </body>
 

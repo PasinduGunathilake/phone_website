@@ -16,7 +16,7 @@ Hero
 =============
  */
 if (slider1) {
-  new Glide(slider1, {
+  window.heroGlide = new Glide(slider1, {
     type: "carousel",
     startAt: 0,
     autoplay: 3000,
@@ -24,7 +24,26 @@ if (slider1) {
     perView: 1,
     animationDuration: 800,
     animationTimingFunc: "linear",
-  }).mount();
+  });
+  window.heroGlide.mount();
+  console.log('[HeroGlide] Mounted');
+
+  document.addEventListener('theme:changed', () => {
+    if (!window.heroGlide) return;
+    try {
+      const idx = window.heroGlide.index || 0;
+      console.log('[HeroGlide] Theme changed. Current index:', idx);
+      // Glide does not expose direct refresh; mimic by forcing go to same index and restarting autoplay
+      window.heroGlide.go('=' + idx);
+      // Restart autoplay explicitly
+      if (typeof window.heroGlide.play === 'function') {
+        window.heroGlide.play();
+        console.log('[HeroGlide] Autoplay resumed after theme change');
+      }
+    } catch (e) {
+      console.warn('[HeroGlide] Theme change handling failed', e);
+    }
+  });
 }
 
 /*
