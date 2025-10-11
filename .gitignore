@@ -8,3 +8,4 @@ __pycache__/
 *.db
 .DS_Store
 Thumbs.db
+.ipynb

@@ -20,6 +20,55 @@
 
   <!-- Custom StyleSheet -->
   <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    .out-of-stock { color: #d32f2f !important; font-weight: 500; }
+    .in-stock { color: #2e7d32 !important; font-weight: 500; }
+    .low-stock { color: #ff6b35 !important; font-weight: 500; }
+    .product__btn:disabled, .product__btn.disabled {
+      background: #ccc !important;
+      cursor: not-allowed !important;
+      opacity: 0.6;
+    }
+    .select__option select {
+      padding: .6rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #fff;
+      font-size: .9rem;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: .75rem;
+      margin-top: 1rem;
+    }
+    .spec-item {
+      display: flex;
+      justify-content: space-between;
+      padding: .5rem;
+      background: #f8f9fa;
+      border-radius: 4px;
+      border-left: 3px solid var(--orange);
+    }
+    .spec-key {
+      font-weight: 600;
+      color: #333;
+    }
+    .spec-val {
+      color: #666;
+      font-weight: 500;
+    }
+    body.darkMode .spec-item {
+      background: rgba(255,255,255,0.05);
+      border-left-color: var(--orange);
+    }
+    body.darkMode .spec-key {
+      color: #f0f0f0;
+    }
+    body.darkMode .spec-val {
+      color: #ccc;
+    }
+  </style>
 
   <title>Phone Shop</title>
 </head>
@@ -67,7 +116,7 @@
           </div>
 
           <div class="nav__icons">
-            <a href="#" class="icon__item">
+            <a href="/login/" class="icon__item">
               <svg class="icon__user">
                 <use xlink:href="./static/images/sprite.svg#icon-user"></use>
               </svg>
@@ -79,12 +128,12 @@
               </svg>
             </a>
 
-            <a href="#" class="icon__item">
-              <svg class="icon__cart">
-                <use xlink:href="./static/images/sprite.svg#icon-shopping-basket"></use>
-              </svg>
-              <span id="cart__total">0</span>
-            </a>
+                        <a href="/cart/" class="icon__item">
+                            <svg class="icon__cart">
+                                <use xlink:href="./static/images/sprite.svg#icon-shopping-basket"></use>
+                            </svg>
+                            <span id="cart__total">0</span>
+                        </a>
           </div>
         </nav>
       </div>
@@ -115,56 +164,56 @@
         <div class="product-detail__container">
           <div class="product-detail__left">
             <div class="details__container--left">
-              <div class="product__pictures">
-                <div class="pictures__container">
-                  <img class="picture" src="./images/products/iPhone/iphone1.jpeg" id="pic1" />
+                <div class="product__pictures">
+                  {% if product and product.images %}
+                    {% for img in product.images %}
+                      <div class="pictures__container">
+                        <img class="picture" src="{{ img }}" id="pic{{ loop.index }}" alt="{{ product.title }}">
+                      </div>
+                    {% endfor %}
+                  {% else %}
+                    <div class="pictures__container">
+                      <img class="picture" src="/static/images/products/placeholder.png" id="pic1" alt="placeholder">
+                    </div>
+                  {% endif %}
                 </div>
-                <div class="pictures__container">
-                  <img class="picture" src="./images/products/iPhone/iphone2.jpeg" id="pic2" />
+                <div class="product__picture" id="product__picture">
+                  <div class="picture__container">
+                    {% if product and product.images %}
+                      <img src="{{ product.images[0] }}" id="pic" alt="{{ product.title }}">
+                    {% else %}
+                      <img src="/static/images/products/placeholder.png" id="pic" alt="placeholder">
+                    {% endif %}
+                  </div>
                 </div>
-                <div class="pictures__container">
-                  <img class="picture" src="./images/products/iPhone/iphone3.jpeg" id="pic3" />
-                </div>
-                <div class="pictures__container">
-                  <img class="picture" src="./images/products/iPhone/iphone4.jpeg" id="pic4" />
-                </div>
-                <div class="pictures__container">
-                  <img class="picture" src="./images/products/iPhone/iphone5.jpeg" id="pic5" />
-                </div>
-              </div>
-              <div class="product__picture" id="product__picture">
-                <!-- <div class="rect" id="rect"></div> -->
-                <div class="picture__container">
-                  <img src="./images/products/iPhone/iphone1.jpeg" id="pic" />
-                </div>
-              </div>
               <div class="zoom" id="zoom"></div>
             </div>
 
-            <div class="product-details__btn">
-              <a class="add" href="#">
+              <div class="product-details__btn">
+              <button type="button" class="product__btn" data-product-id="{{ product.id if product else '' }}" data-title="{{ product.title if product else '' }}" data-price="{{ product.price if product else 0 }}" data-image="{{ product.images[0] if product and product.images else '/static/images/products/placeholder.png' }}">
                 <span>
                   <svg>
                     <use xlink:href="./images/sprite.svg#icon-cart-plus"></use>
                   </svg>
                 </span>
-                ADD TO CART</a>
-              <a class="buy" href="#">
+                ADD TO CART
+              </button>
+              <button type="button" id="buy-now" data-product-id="{{ product.id if product else '' }}" data-title="{{ product.title if product else '' }}" data-price="{{ product.price if product else 0 }}" data-image="{{ product.images[0] if product and product.images else '/static/images/products/placeholder.png' }}">
                 <span>
                   <svg>
                     <use xlink:href="./images/sprite.svg#icon-credit-card"></use>
                   </svg>
                 </span>
                 BUY NOW
-              </a>
+              </button>
             </div>
           </div>
 
           <div class="product-detail__right">
             <div class="product-detail__content">
-              <h3>Apple iPhone XR</h3>
+              <h3>{{ product.title if product else 'Product' }}</h3>
               <div class="price">
-                <span class="new__price">$250.99</span>
+                <span class="new__price">${{ '%.2f'|format(product.price) if product else '0.00' }}</span>
               </div>
               <div class="product__review">
                 <div class="rating">
@@ -186,27 +235,37 @@
                 </div>
                 <a href="#" class="rating__quatity">3 reviews</a>
               </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                a doloribus iste natus et facere?
-                dolor sit amet consectetur adipisicing elit. Sunt
-                a doloribus iste natus et facere?
-              </p>
+              <p>{{ product.description|default('No description available.') }}</p>
               <div class="product__info-container">
                 <ul class="product__info">
                   <li class="select">
                     <div class="select__option">
                       <label for="colors">Color</label>
                       <select name="colors" id="colors" class="select-box">
-                        <option value="blue">blue</option>
-                        <option value="red">red</option>
+                        {% if product and product.get('colors') %}
+                          {% for color in product.colors %}
+                            <option value="{{ color }}">{{ color.title() }}</option>
+                          {% endfor %}
+                        {% else %}
+                          <option value="blue">Blue</option>
+                          <option value="red">Red</option>
+                          <option value="black">Black</option>
+                          <option value="white">White</option>
+                        {% endif %}
                       </select>
                     </div>
                     <div class="select__option">
-                      <label for="size">Inches</label>
-                      <select name="size" id="size" class="select-box">
-                        <option value="6.65">6.65</option>
-                        <option value="7.50">7.50</option>
+                      <label for="storage">Storage</label>
+                      <select name="storage" id="storage" class="select-box">
+                        {% if product and product.get('storage_options') %}
+                          {% for storage in product.storage_options %}
+                            <option value="{{ storage }}">{{ storage }}</option>
+                          {% endfor %}
+                        {% else %}
+                          <option value="64GB">64GB</option>
+                          <option value="128GB">128GB</option>
+                          <option value="256GB">256GB</option>
+                        {% endif %}
                       </select>
                     </div>
                   </li>
@@ -220,7 +279,7 @@
                             <use xlink:href="./images/sprite.svg#icon-minus"></use>
                           </svg>
                         </span>
-                        <input type="text" min="1" value="1" max="10" class="counter-btn">
+                        <input type="text" min="1" value="1" max="{{ product.get('stock', 10) if product else 10 }}" class="counter-btn" id="product-quantity" data-product-id="{{ product.id if product else '' }}">
                         <span class="plus-btn">
                           <svg>
                             <use xlink:href="./images/sprite.svg#icon-plus"></use>
@@ -232,20 +291,38 @@
 
                   <li>
                     <span>Subtotal:</span>
-                    <a href="#" class="new__price">$250.99</a>
+                    <a href="#" class="new__price" id="subtotal-price">${{ '%.2f'|format(product.price) if product else '0.00' }}</a>
                   </li>
                   <li>
                     <span>Brand:</span>
-                    <a href="#">Apple</a>
+                    <a href="#">{{ product.get('brand','Unknown') if product else 'Unknown' }}</a>
                   </li>
                   <li>
                     <span>Product Type:</span>
-                    <a href="#">Phone</a>
+                    <a href="#">{{ product.get('category','Product') if product else 'Product' }}</a>
                   </li>
                   <li>
                     <span>Availability:</span>
-                    <a href="#" class="in-stock">In Stock (7 Items)</a>
+                    <a href="#" class="{{ 'in-stock' if (product.get('stock', 0) if product else 0) > 0 else 'out-of-stock' }}">
+                      {% if product and product.get('stock') %}
+                        {% if product.stock > 0 %}
+                          {{ product.stock }} in stock
+                        {% else %}
+                          Out of stock
+                        {% endif %}
+                      {% else %}
+                        In Stock
+                      {% endif %}
+                    </a>
                   </li>
+                  {% if product and product.get('specs') %}
+                    {% for key, value in product.specs.items() %}
+                      <li>
+                        <span>{{ key.title() }}:</span>
+                        <a href="#">{{ value }}</a>
+                      </li>
+                    {% endfor %}
+                  {% endif %}
                 </ul>
                 <div class="product-info__btn">
                   <a href="#">
@@ -305,32 +382,15 @@
 
           <div class="detail__content">
             <div class="content active" id="description">
-              <p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam
-                dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des
-                commodo pharetras loremos.Donec pretium egestas sapien et mollis.
-              </p>
-              <h2>Sample Unordered List</h2>
-              <ul>
-                <li>Comodous in tempor ullamcorper miaculis</li>
-                <li>Pellentesque vitae neque mollis urna mattis laoreet.</li>
-                <li>Divamus sit amet purus justo.</li>
-                <li>Proin molestie egestas orci ac suscipit risus posuere loremous</li>
-              </ul>
-              <h2>Sample Ordered Lista</h2>
-              <ol>
-                <li>Comodous in tempor ullamcorper miaculis</li>
-                <li>Pellentesque vitae neque mollis urna mattis laoreet.</li>
-                <li>Divamus sit amet purus justo.</li>
-                <li>Proin molestie egestas orci ac suscipit risus posuere loremous</li>
-              </ol>
-              <h2>Sample Paragraph Text</h2>
-              <p>Praesent vestibulum congue tellus at fringilla. Curabitur vitae semper sem, eu convallis est. Cras
-                felis
-                nunc commodo eu convallis vitae interdum non nisl. Maecenas ac est sit amet augue pharetra convallis nec
-                danos dui. Cras suscipit quam et turpis eleifend vitae malesuada magna congue. Damus id ullamcorper
-                neque. Sed vitae mi a mi pretium aliquet ac sed elit. Pellentesque nulla eros accumsan quis justo at
-                tincidunt lobortis denimes loremous. Suspendisse vestibulum lectus in lectus volutpat, ut dapibus purus
-                pulvinar. Vestibulum sit amet auctor ipsum.</p>
+              <p>{{ product.description|default('No extended description provided.') }}</p>
+              {% if product.specs %}
+                <h3>Specifications</h3>
+                <div class="specs-grid">
+                {% for k, v in product.specs.items() %}
+                  <div class="spec-item"><span class="spec-key">{{ k }}</span><span class="spec-val">{{ v }}</span></div>
+                {% endfor %}
+                </div>
+              {% endif %}
             </div>
             <div class="content" id="reviews">
               <h1>Customer Reviews</h1>
@@ -1557,7 +1617,11 @@
   <!-- Custom JavaScript -->
   <script src="./static/js/products.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="./static/js/product-page.js"></script>
   <script src="./static/js/slider.js"></script>
+  <script src="./static/js/darkmode.js"></script>
+  <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/global.js') }}"></script>
 </body>
 
 </html>

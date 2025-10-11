@@ -14,23 +14,28 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 
 load_dotenv()
 
+# Allow either GEMINI_API_KEY or GOOGLE_API_KEY from env/.env
+gemini_api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
 
-gemini_api_key = os.environ.get("GEMINI_API_KEY")
-if not gemini_api_key:
-    raise ValueError("GEMINI_API_KEY not found in environment variables. Please check your .env file.")
+CHATBOT_READY = bool(gemini_api_key)
 
-os.environ["GOOGLE_API_KEY"] = gemini_api_key
+if CHATBOT_READY:
+    # Propagate to expected env var for the client lib
+    os.environ["GOOGLE_API_KEY"] = gemini_api_key
 
-LLModel = GoogleGenerativeAI(model="gemini-2.5-flash")
-
-embedding_model = GoogleGenerativeAIEmbeddings(model="gemini-embedding-001")
-
-vectorstore = Chroma(persist_directory="chroma_db", embedding_function=embedding_model)
-
-retriever = vectorstore.as_retriever(
-    search_type="similarity",
-    #search_kwargs={"k": 4}
-)
+    LLModel = GoogleGenerativeAI(model="gemini-2.5-flash")
+    embedding_model = GoogleGenerativeAIEmbeddings(model="gemini-embedding-001")
+    vectorstore = Chroma(persist_directory="chroma_db", embedding_function=embedding_model)
+    retriever = vectorstore.as_retriever(
+        search_type="similarity",
+        #search_kwargs={"k": 4}
+    )
+else:
+    # Placeholders to avoid NameError if imported when not configured
+    LLModel = None
+    embedding_model = None
+    vectorstore = None
+    retriever = None
 
 system_prompt = """
 You are a helpful, customer-friendly mobile phone shop agent.
@@ -84,7 +89,7 @@ prompt = ChatPromptTemplate.from_messages([
     ("human", "{input}")
 ])
 
-QAchain = create_stuff_documents_chain(LLModel, prompt)
+QAchain = create_stuff_documents_chain(LLModel, prompt) if CHATBOT_READY else None
 
 # This was the old RAGChain, which was not history-aware.
 # RAGChain = create_retrieval_chain(retriever, QAchain)
@@ -102,12 +107,16 @@ context_prompt = ChatPromptTemplate.from_messages([
     ("human", "{input}"),
 ])
 
-history_aware_retriever = create_history_aware_retriever(
-    LLModel, retriever, context_prompt
+history_aware_retriever = (
+    create_history_aware_retriever(LLModel, retriever, context_prompt)
+    if CHATBOT_READY else None
 )
 
 # Create the new conversational RAG chain
-conversational_rag_chain = create_retrieval_chain(history_aware_retriever, QAchain)
+conversational_rag_chain = (
+    create_retrieval_chain(history_aware_retriever, QAchain)
+    if CHATBOT_READY else None
+)
 
 
 store = {}
@@ -119,26 +128,23 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
     return store[session_id]
 
 
-ConvRAGChain = RunnableWithMessageHistory(
-    conversational_rag_chain,
-    get_session_history,
-    input_messages_key="input",
-    history_messages_key="chat_history",
-    output_messages_key="answer",
+ConvRAGChain = (
+    RunnableWithMessageHistory(
+        conversational_rag_chain,
+        get_session_history,
+        input_messages_key="input",
+        history_messages_key="chat_history",
+        output_messages_key="answer",
+    ) if CHATBOT_READY else None
 )
 
 
 def get_chatbot_response(message, session_id="default"):
-    try:
-        response = ConvRAGChain.invoke(
-            {"input": message},
-            config={"configurable": {"session_id": session_id}},
+    if not CHATBOT_READY:
+        return (
+            "Chatbot is not configured. Please set GEMINI_API_KEY (or GOOGLE_API_KEY) in your .env file "
+            "and restart the server."
         )
-        return response["answer"]
-    except Exception as e:
-        print(f"Error in chatbot response: {e}")
-        return "Sorry, I encountered an error processing your request. Please try again."
-def get_chatbot_response(message, session_id="default"):
     try:
         response = ConvRAGChain.invoke(
             {"input": message},
